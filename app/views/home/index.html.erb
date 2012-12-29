@@ -1,15 +1,25 @@
 <div class="container">
-  <form class="form-signin">
-    <h2 class="form-signin-heading">Signup</h2>
-    <%= link_to "Zaimでログイン", user_omniauth_authorize_path(:zaim) %>
-    <button class="btn btn-large btn-primary" type="submit">Login with Zaim account</button>
-  </form>
-  <%= form_tag zaim_pay_url do %>
-    <%= text_field_tag :category_id, "101" %>
-    <%= text_field_tag :genre_id, "10101" %>
-    <%= text_field_tag :price, "-500" %>
-    <%= submit_tag "送信" %>
+  <% unless signed_in? %> <%# 未ログインのとき %>
+    <form class="form-signin">
+      <h2 class="form-signin-heading">Signup</h2>
+      <%= link_to "Login with Zaim account", user_omniauth_authorize_path(:zaim), class: "btn btn-large btn-primary" %>
+    </form>
+  <% else %> <%# ログイン済のとき %>
+    <div id="main">
+      <p>登録したい項目をクリックしてください。</p>
+      <%= render 'item' , type: 'drink'    , name: '飲み物' %>
+      <%= render 'item' , type: 'shopping' , name: '消耗品' %>
+      <%= render 'item' , type: 'lunch'    , name: 'ランチ' %>
+      <%= render 'item' , type: 'party'    , name: '飲み会' %>
+      <%= render 'item' , type: 'dinner'   , name: 'ディナー' %>
+      <%= render 'item' , type: 'train'    , name: '電車' %>
+    </div>
+    <%# 隠しモーダルウィンドウたち %>
+    <%= render 'modal', type: 'drink',    name: '飲み物',    prices: [ 100,  150,  200] %>
+    <%= render 'modal', type: 'shopping', name: '消耗品',    prices: [ 100,  200,  300] %>
+    <%= render 'modal', type: 'lunch',    name: 'ランチ',    prices: [ 500,  800, 1000] %>
+    <%= render 'modal', type: 'party',    name: '飲み会',    prices: [3000, 5000, 7000] %>
+    <%= render 'modal', type: 'dinner',   name: 'ディナー',  prices: [ 500, 1000, 2000] %>
+    <%= render 'modal', type: 'train',    name: '電車',      prices: [ 150,  200,  300] %>
   <% end %>
 </div>
-
-
