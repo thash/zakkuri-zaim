@@ -19,8 +19,9 @@ class User < ActiveRecord::Base
                          token: auth.credentials.token,
                          token_secret: auth.credentials.secret)
     elsif user.token.blank? || user.token_secret.blank?
-      user = user.update_attributes(token: auth.credentials.token,
-                                    token_secret: auth.credentials.secret)
+      user.update_attributes(token: auth.credentials.token,
+                             token_secret: auth.credentials.secret)
+      return User.where(provider: auth.provider, uid: auth.uid).first
     end
     user
   end
