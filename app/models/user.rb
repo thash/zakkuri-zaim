@@ -1,3 +1,4 @@
+# coding: utf-8
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -9,7 +10,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :provider, :uid, :token, :token_secret
 
-  def self.find_or_create_user_by_zaim_oauth(auth, signed_in_resource=nil)
+  def self.create_or_update_user_by_zaim_oauth(auth, signed_in_resource=nil)
     user = User.where(provider: auth.provider, uid: auth.uid).first
 
     if user.blank?
@@ -18,10 +19,9 @@ class User < ActiveRecord::Base
                          uid: auth.uid,
                          token: auth.credentials.token,
                          token_secret: auth.credentials.secret)
-    elsif user.token.blank? || user.token_secret.blank?
+    else
       user.update_attributes(token: auth.credentials.token,
                              token_secret: auth.credentials.secret)
-      return User.where(provider: auth.provider, uid: auth.uid).first
     end
     user
   end
