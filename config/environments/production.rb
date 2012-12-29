@@ -1,3 +1,4 @@
+# coding: utf-8
 ZakkuriZaim::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
@@ -15,7 +16,8 @@ ZakkuriZaim::Application.configure do
   config.assets.compress = true
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
-  config.assets.compile = false
+  # true => 未コンパイルの時エラーを出さずにライブコンパイルする(遅い)
+  config.assets.compile = true
 
   # Generate digests for assets URLs
   config.assets.digest = true
