@@ -1,1 +1,8 @@
-<%= link_to "Zaimでログイン", user_omniauth_authorize_path(:zaim) %>
+<div class="container">
+  <form class="form-signin">
+    <h2 class="form-signin-heading">Signup</h2>
+    <%= link_to "Zaimでログイン", user_omniauth_authorize_path(:zaim) %>
+    <button class="btn btn-large btn-primary" type="submit">Login with Zaim account</button>
+  </form>
+</div>
+
