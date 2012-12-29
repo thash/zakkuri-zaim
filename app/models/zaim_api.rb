@@ -2,26 +2,21 @@
 class ZaimApi # < ActiveRecord::Base #NOTE
   class ResponseError < StandardError; end
 
-  # attr_accessible :access_token, :access_token_secret #NOTE
-  attr_accessor :consumer
+  attr_accessor :consumer, :token, :token_secret
 
-  def initialize(consumer_key, consumer_secret)
-    @consumer = OAuth::Consumer.new(consumer_key, consumer_secret,
+  def initialize(token, token_secret)
+    @consumer = OAuth::Consumer.new($setting.Consumer_Key, $setting.Consumer_Secret,
                                     #site: 'https://api.zaim.net/',
-                                    request_token_path: $secret.Request_token_URL,
-                                    authorize_path: $secret.Authorize_URL,
-                                    access_token_path: $secret.Access_token_URL)
-  end
-
-  def access_token
-    OAuth::AccessToken.from_hash(self.consumer,
-                                 oauth_token: $secret.Access_token,
-                                 oauth_token_secret: $secret.Access_token_secret)
+                                    request_token_path: $setting.Request_token_URL,
+                                    authorize_path: $setting.Authorize_URL,
+                                    access_token_path: $setting.Access_token_URL)
+    @token = token
+    @token_secret = token_secret
   end
 
   # Zaim APIを介して記録を行う
   def pay!(category_id, genre_id, price)
-    raise ArgumentError if price >= 0 # 出費限定なのでpriceは負であるべき
+    raise ArgumentError if price.to_i >= 0 # 出費限定なのでpriceは負であるべき
     input = {
       category_id: category_id,
       genre_id: genre_id,
@@ -33,4 +28,9 @@ class ZaimApi # < ActiveRecord::Base #NOTE
     p res.body
   end
 
+  def access_token
+    @at ||= OAuth::AccessToken.from_hash(self.consumer,
+                                         oauth_token: self.token,
+                                         oauth_token_secret: self.token_secret)
+  end
 end

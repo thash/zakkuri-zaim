@@ -4,5 +4,12 @@
     <%= link_to "Zaimでログイン", user_omniauth_authorize_path(:zaim) %>
     <button class="btn btn-large btn-primary" type="submit">Login with Zaim account</button>
   </form>
+  <%= form_tag zaim_pay_url do %>
+    <%= text_field_tag :category_id, "101" %>
+    <%= text_field_tag :genre_id, "10101" %>
+    <%= text_field_tag :price, "-500" %>
+    <%= submit_tag "送信" %>
+  <% end %>
 </div>
+
 
