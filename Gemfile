@@ -41,3 +41,5 @@ gem 'oauth'
 gem 'hashie'
 gem 'pry'
 gem 'json'
+
+gem 'devise'
