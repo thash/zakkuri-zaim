@@ -1,16 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
-  <title>ZakkuriZaim</title>
+  <meta charset="UTF-8">
+  <title>ざっくり家計簿 for Zaim</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+<div id="header">
+  <div>
+    タイトルを入れるタイトルを入れる
+    <div class="clear"></div>
+  </div>
+</div>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
 
 <%= yield %>
-
 </body>
 </html>
+
