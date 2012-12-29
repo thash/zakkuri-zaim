@@ -36,3 +36,5 @@ ZakkuriZaim::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 end
+
+$setting = Hashie::Mash.new(YAML.load_file(File.expand_path('../../setting.yml', __FILE__)))

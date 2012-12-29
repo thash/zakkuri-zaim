@@ -65,3 +65,5 @@ ZakkuriZaim::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 end
+
+$setting = Hashie::Mash.new(YAML.load_file(File.expand_path('../../../../../shared/setting.yml', __FILE__)))
