@@ -16,3 +16,8 @@
 
 config/secret.yml
 config/setting.yml
+
+# for capistrano
+log
+REVISION
+public/system
