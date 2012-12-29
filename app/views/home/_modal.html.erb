@@ -6,19 +6,17 @@
   <div class="modal-body">
     <%= image_tag "#{type}.png", {alt: name, width: 128, height: 128} %>
     <div>
+      <%# ヨコに並べたい... %>
       <% for price in prices do %>
-        <a href="#" class="btn btn-primary"><%= "約#{price}円" %></a>
+        <%= form_tag zaim_pay_url do %>
+          <%= hidden_field_tag :category_id, category_id %>
+          <%= hidden_field_tag :genre_id, genre_id %>
+          <%= hidden_field_tag :price, price %>
+          <button class="btn btn-primary" type="submit">
+            <%= "約#{price}円" %>
+          </button>
+        <% end %>
       <% end %>
     </div>
   </div>
-</div>
-
-<div class="hidden">
-  このふぉーむをmodalに適用するよ
-  <%= form_tag zaim_pay_url do %>
-    <%= text_field_tag :category_id, "101" %>
-    <%= text_field_tag :genre_id, "10101" %>
-    <%= text_field_tag :price, "-500" %>
-    <%= submit_tag "送信" %>
-  <% end %>
 </div>

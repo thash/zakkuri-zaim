@@ -16,7 +16,7 @@ class ZaimApi # < ActiveRecord::Base #NOTE
 
   # Zaim APIを介して記録を行う
   def pay!(category_id, genre_id, price)
-    raise ArgumentError if price.to_i >= 0 # 出費限定なのでpriceは負であるべき
+    price = price.to_i.abs*-1 # 正負どちらで渡されようと負値に変換
     input = {
       category_id: category_id,
       genre_id: genre_id,
@@ -25,7 +25,6 @@ class ZaimApi # < ActiveRecord::Base #NOTE
     }
     res = access_token.post("https://api.zaim.net/v1/pay/create.json", input)
     raise ResponseError if res.code != "200"
-    p res.body
   end
 
   def access_token
