@@ -1,6 +1,7 @@
 # coding: utf-8
 class ZaimApi # < ActiveRecord::Base #NOTE
   class ResponseError < StandardError; end
+  class UnauthorizedError < StandardError; end
 
   attr_accessor :consumer, :token, :token_secret
 
@@ -24,6 +25,7 @@ class ZaimApi # < ActiveRecord::Base #NOTE
       date: Time.now.strftime("%Y-%m-%d")
     }
     res = access_token.post("https://api.zaim.net/v1/pay/create.json", input)
+    raise UnauthorizedError if res.class == Net::HTTPUnauthorized
     raise ResponseError if res.code != "200"
   end
 
