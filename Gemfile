@@ -38,6 +38,7 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 gem 'oauth'
+gem 'omniauth-zaim'
 gem 'hashie'
 gem 'pry'
 gem 'json'
