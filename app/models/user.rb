@@ -7,14 +7,20 @@ class User < ActiveRecord::Base
   devise :omniauthable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :provider, :uid
+  attr_accessible :name, :provider, :uid, :token, :token_secret
 
   def self.find_or_create_user_by_zaim_oauth(auth, signed_in_resource=nil)
     user = User.where(provider: auth.provider, uid: auth.uid).first
-    unless user
+
+    if user.blank?
       user = User.create(name: auth.extra.raw_info.name,
                          provider: auth.provider,
-                         uid: auth.uid)
+                         uid: auth.uid,
+                         token: auth.credentials.token,
+                         token_secret: auth.credentials.secret)
+    elsif user.token.blank? || user.token_secret.blank?
+      user = user.update_attributes(token: auth.credentials.token,
+                                    token_secret: auth.credentials.secret)
     end
     user
   end

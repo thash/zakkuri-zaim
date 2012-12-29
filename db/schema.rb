@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121229070333) do
+ActiveRecord::Schema.define(:version => 20121229075449) do
 
   create_table "users", :force => true do |t|
     t.datetime "remember_created_at"
@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(:version => 20121229070333) do
     t.string   "provider"
     t.string   "uid"
     t.string   "name"
+    t.string   "token"
+    t.string   "token_secret"
   end
 
   create_table "zaim_apis", :force => true do |t|
