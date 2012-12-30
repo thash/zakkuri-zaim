@@ -29,6 +29,7 @@
         <a class="brand" href="/">ざっくり家計簿</a>
         <div class="nav-collapse collapse">
           <ul class="nav">
+              <li><%= link_to "Input", '/' %></li>
             <% if signed_in? %>
               <li><%= link_to "Logout", logout_path %></li>
             <% end %>
