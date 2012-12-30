@@ -1,9 +1,23 @@
 <div class="container">
   <% unless signed_in? %> <%# 未ログインのとき %>
     <form class="form-signin">
-      <h2 class="form-signin-heading">Signup</h2>
+      <h2 class="form-signin-heading">Signin</h2>
       <%= link_to "Login with Zaim account", user_omniauth_authorize_path(:zaim), class: "btn btn-large btn-primary" %>
     </form>
+    <div id="main">
+      <p>利用には <%= link_to "Zaim", "http://zaim.net/" %> への登録があらかじめ必要です <br />（現在スマートフォンからのみ対応）</p>
+      <div class="buttons">
+        <a href="http://itunes.apple.com/jp/app/zaim-wu-liaono-jia-ji-bu-zhi/id445850671?mt=8" class="large_button" id="apple">
+          <span class="icon"></span>
+          <em>Download now for</em> iOS
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=in.unicco.zaim.ZaimForIPhone" class="large_button" id="android">
+          <span class="icon"></span>
+          <em>Download now for</em> Android
+        </a>
+      </div>
+
+    </div>
   <% else %> <%# ログイン済のとき %>
     <div id="main">
       <p></p>
