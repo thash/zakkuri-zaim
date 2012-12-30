@@ -2,6 +2,8 @@ body {
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: #f5f5f5;
+  font-size: 13px;
+  font-family: "Helvetica Neue", helvetica, sans-serif;
 }
 .form-signin {
   max-width: 300px;
@@ -27,3 +29,28 @@ body {
   margin-bottom: 15px;
   padding: 7px 9px;
 }
+
+#main{
+  width: 280px;
+  margin:auto;
+  text-align:center;
+}
+p{
+  margin-bottom: 24px;
+}
+.section img{
+  padding-bottom: 8px;
+}
+.section{
+  width: 50%;
+  float:left;
+  margin-bottom: 15px;
+}
+.modal-body > div{
+  text-align: center;
+}
+.modal-body img{
+  display: block;
+  margin: auto auto 30px auto;
+}
+

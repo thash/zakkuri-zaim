@@ -6,17 +6,17 @@
     </form>
   <% else %> <%# ログイン済のとき %>
     <div id="main">
-      <p>登録したい項目をクリックしてください。</p>
+      <p></p>
+      <%= render 'item' , type: 'shopping' , name: '食べ物' %>
       <%= render 'item' , type: 'drink'    , name: '飲み物' %>
-      <%= render 'item' , type: 'shopping' , name: '消耗品' %>
       <%= render 'item' , type: 'lunch'    , name: 'ランチ' %>
       <%= render 'item' , type: 'party'    , name: '飲み会' %>
       <%= render 'item' , type: 'dinner'   , name: 'ディナー' %>
       <%= render 'item' , type: 'train'    , name: '電車' %>
     </div>
     <%# 隠しモーダルウィンドウたち. ほんまはmodelに情報持つべき %>
-    <%= render 'modal', type: 'drink',    name: '飲み物',    prices: [ 100,  150,  200], category_id: 101, genre_id: 10101 %>
-    <%= render 'modal', type: 'shopping', name: '消耗品',    prices: [ 100,  200,  300], category_id: 102, genre_id: 10201 %>
+    <%= render 'modal', type: 'drink',    name: '飲み物',    prices: [ 100,  150,  200], category_id: 101, genre_id: 10199 %>
+    <%= render 'modal', type: 'shopping', name: '食べ物',    prices: [ 100,  200,  400], category_id: 101, genre_id: 10101 %>
     <%= render 'modal', type: 'lunch',    name: 'ランチ',    prices: [ 500,  800, 1000], category_id: 101, genre_id: 10104 %>
     <%= render 'modal', type: 'party',    name: '飲み会',    prices: [3000, 5000, 7000], category_id: 107, genre_id: 10701 %>
     <%= render 'modal', type: 'dinner',   name: 'ディナー',  prices: [ 500, 1000, 2000], category_id: 101, genre_id: 10105 %>
